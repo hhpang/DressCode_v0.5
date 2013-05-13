@@ -11,6 +11,9 @@ tokens {
   STATEMENTS;
   ASSIGNMENT;
   FUNC_CALL;
+  AND_CALL;
+  ADD_CALL;
+  SUB_CALL;
   EXP;	
   EXP_LIST;
   ID_LIST;
@@ -136,7 +139,12 @@ functionCall
    | Merge	'(' expression ')'-> ^(FUNC_CALL Merge expression)
    | Scale '(' exprList? ')'-> ^(FUNC_CALL Scale exprList?)
    | MirrorX	'(' expression ')'-> ^(FUNC_CALL MirrorX expression)
-  
+   | MirrorY	'(' expression ')'-> ^(FUNC_CALL MirrorY expression)
+   | Union	'(' exprList? ')'-> ^(FUNC_CALL Union exprList?)
+   | Difference	'(' exprList? ')'-> ^(FUNC_CALL Difference exprList?)
+   | Clip	'(' exprList? ')'-> ^(FUNC_CALL Clip exprList?)
+   | Xor	'(' exprList? ')'-> ^(FUNC_CALL Xor exprList?)
+   
    ;
    
    getCall
@@ -288,7 +296,7 @@ lookup
   :  (dotExpression)+ -> ^(DOT dotExpression+)
   ;	 
  
-  
+  //being depreciated
   dotExpression
   : DotX
   | DotY
@@ -363,6 +371,10 @@ Expand 	: 'expand';
 Merge	: 'merge';
 MirrorX	: 'mirrorX';
 MirrorY: 'mirrorY';
+Union: 'union';
+Difference: 'diff';
+Clip	: 'clip';
+Xor	:'xor';
  
 //getMethods
 GetWidth: 'getWidth';
