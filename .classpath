@@ -24,5 +24,6 @@
 	<classpathentry kind="lib" path="/Users/Pang/DressCode_v0.5/lib/pde.jar"/>
 	<classpathentry kind="lib" path="/Users/Pang/DressCode_v0.5/lib/pdf.jar"/>
 	<classpathentry kind="lib" path="/Users/Pang/DressCode_v0.5/lib/rsyntaxtextarea.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

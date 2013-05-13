@@ -123,6 +123,8 @@ functionCall returns [DCNode node]
   	| ^(FUNC_CALL Polygon exprList?) {node = new PolygonNode($exprList.e,$FUNC_CALL.getLine());}
   	| ^(FUNC_CALL LShape exprList?) {node = new LShapeNode($exprList.e,$FUNC_CALL.getLine());}
   	|  ^(FUNC_CALL Point exprList?) {node = new PointNode($exprList.e,$FUNC_CALL.getLine());}
+  	| ^(FUNC_CALL Shirt exprList?) {node = new ShirtNode($exprList.e,$FUNC_CALL.getLine());}
+  	| ^(FUNC_CALL ShirtBack exprList?) {node = new ShirtBackNode($exprList.e,$FUNC_CALL.getLine());}
   	;
   
   transformCall returns [DCNode node]

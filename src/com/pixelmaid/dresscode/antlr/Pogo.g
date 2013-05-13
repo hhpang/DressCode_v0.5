@@ -115,6 +115,8 @@ functionCall
   	|Polygon '(' exprList? ')' ->  ^(FUNC_CALL Polygon exprList?)
   	|LShape '(' exprList? ')' ->  ^(FUNC_CALL LShape exprList?)
   	| Point '(' exprList? ')' ->  ^(FUNC_CALL Point exprList?)
+  	|Shirt '(' exprList? ')' -> ^(FUNC_CALL Shirt exprList?)
+  	|ShirtBack '(' exprList? ')' -> ^(FUNC_CALL ShirtBack exprList?)
   	;
   
   transformCall
@@ -332,6 +334,8 @@ Point	: 'point';
 Triangle: 'triangle';
 Polygon	: 'poly';
 LShape	: 'import';
+Shirt : 'shirt';
+ShirtBack: 'shirtback';
 
 //math keywords
 Cosine	:'cos';

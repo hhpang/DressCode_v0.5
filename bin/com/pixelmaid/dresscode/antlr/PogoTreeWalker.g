@@ -110,6 +110,8 @@ functionCall returns [DCNode node]
   |	 primitiveCall {node = $primitiveCall.node; ((NodeEvent)node).addEventListener(drawableManager);}
   |	 transformCall {node = $transformCall.node; ((NodeEvent)node).addEventListener(drawableManager);}
   |	 mathCall {node= $mathCall.node; ((NodeEvent)node).addEventListener(drawableManager);}
+  |	 getCall {node= $getCall.node; ((NodeEvent)node).addEventListener(drawableManager);}
+  
   ;
   
   
@@ -121,10 +123,13 @@ functionCall returns [DCNode node]
   	| ^(FUNC_CALL Polygon exprList?) {node = new PolygonNode($exprList.e,$FUNC_CALL.getLine());}
   	| ^(FUNC_CALL LShape exprList?) {node = new LShapeNode($exprList.e,$FUNC_CALL.getLine());}
   	|  ^(FUNC_CALL Point exprList?) {node = new PointNode($exprList.e,$FUNC_CALL.getLine());}
+  	| ^(FUNC_CALL Shirt exprList?) {node = new ShirtNode($exprList.e,$FUNC_CALL.getLine());}
+  	| ^(FUNC_CALL ShirtBack exprList?) {node = new ShirtBackNode($exprList.e,$FUNC_CALL.getLine());}
   	;
   
   transformCall returns [DCNode node]
    :^(FUNC_CALL Move exprList?)   {node = new MoveNode($exprList.e,$FUNC_CALL.getLine());}
+   | ^(FUNC_CALL MoveBy exprList?)   {node = new MoveByNode($exprList.e,$FUNC_CALL.getLine());}
    |^(FUNC_CALL Copy expression)  {node = new CopyNode($expression.node,$FUNC_CALL.getLine());}
    |^(FUNC_CALL Rotate exprList?) {node = new RotateNode($exprList.e,$FUNC_CALL.getLine());}
    |^(FUNC_CALL Fill exprList?)   {node = new FillNode($exprList.e,$FUNC_CALL.getLine());}
@@ -137,12 +142,36 @@ functionCall returns [DCNode node]
    |^(FUNC_CALL Expand expression){node = new ExpandNode($expression.node,$FUNC_CALL.getLine());}
    | ^(FUNC_CALL Merge expression){node = new MergeNode($expression.node,$FUNC_CALL.getLine());}
    | ^(FUNC_CALL Scale exprList?){node = new ScaleNode($exprList.e,$FUNC_CALL.getLine());}
+   | ^(FUNC_CALL MirrorX expression){node = new MirrorXNode($expression.node,$FUNC_CALL.getLine());}
    ;
    
    mathCall returns [DCNode node]
    :^(FUNC_CALL Cosine expression) {node = new CosineNode($expression.node,$FUNC_CALL.getLine());}
    |^(FUNC_CALL Sine expression) {node = new SineNode($expression.node,$FUNC_CALL.getLine());}
+   |^(FUNC_CALL Tan expression) {node = new TanNode($expression.node,$FUNC_CALL.getLine());}
+   |^(FUNC_CALL ATan expression) {node = new ATanNode($expression.node,$FUNC_CALL.getLine());}
+   
+   |^(FUNC_CALL Random exprList?) {node = new RandomNode($exprList.e,$FUNC_CALL.getLine());}
+   |^(FUNC_CALL Round expression) {node = new RoundNode($expression.node,$FUNC_CALL.getLine());}
+   |^(FUNC_CALL Map exprList?) {node = new MapNode($exprList.e,$FUNC_CALL.getLine());}
+   
    ;
+   
+   
+   getCall returns [DCNode node]
+  : ^(FUNC_CALL GetWidth expression) {node = new GetWidthNode($expression.node);}
+  | ^(FUNC_CALL GetHeight expression){node = new GetHeightNode($expression.node);}
+  | ^(FUNC_CALL GetX expression){node = new GetXNode($expression.node);}
+  | ^(FUNC_CALL GetY expression){node = new GetYNode($expression.node);}
+  | ^(FUNC_CALL GetOrigin expression){node = new GetOriginNode($expression.node);}
+  | ^(FUNC_CALL GetRotation expression){node = new GetRotationNode($expression.node);}
+  | ^(FUNC_CALL GetFill expression)
+  | ^(FUNC_CALL GetStroke expression)
+  | ^(FUNC_CALL GetStart expression)
+  |^(FUNC_CALL GetEnd expression) 
+  |^(FUNC_CALL GetDistance exprList?) {node = new DistanceNode($exprList.e);}
+  
+  ;
 
 ifStatement returns [DCNode node]
 @init  {IfNode ifNode = new IfNode();}
