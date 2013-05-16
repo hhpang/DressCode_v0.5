@@ -1,15 +1,12 @@
 
 package com.pixelmaid.dresscode.drawing.primitive2d;
-
 import processing.core.PShape;
-
 import com.pixelmaid.dresscode.app.Embedded;
 import com.pixelmaid.dresscode.drawing.datatype.Point;
 
-
 public class Shirt extends LShape {
 	
-	private String shapePath = "/Users/Pang/Desktop/patterns/shirtfront.svg"; //path to svg to be loaded
+	private String shapePath = ClassLoader.getSystemResource("com/pixelmaid/dresscode/resources/shirtfront.svg").getPath(); //path to svg to be loaded
 	private PShape shape; //processing PShape
 	private Embedded canvas; //
 	private double x=0; //x coordinate of shape
